@@ -1,4 +1,4 @@
-const socket=io()
+const socket=io();
 document.getElementById("videos-button").onclick = function () {
     location.href = "content1/videos.html";
   };
