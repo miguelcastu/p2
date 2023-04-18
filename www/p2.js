@@ -1,3 +1,5 @@
+window.onload = function() {
+  // Your JavaScript code here
 const socket = io();
 
 const qrcode = new QRCode("qrcode", {
@@ -38,6 +40,9 @@ socket.on("connect", () => {
 
 });
 
+document.getElementById("menu-inicial").onclick = function () {
+  location.href = "./qr.html";
+};
 
 document.getElementById("videos-button").onclick = function () {
     location.href = "content1/videos.html";
@@ -50,3 +55,4 @@ document.getElementById("videos-button").onclick = function () {
   document.getElementById("peliculas-button").onclick = function () {
     location.href = "content1/peliculas.html";
   };
+}
