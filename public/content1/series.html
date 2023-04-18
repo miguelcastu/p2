@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script src="https://www.youtube.com/iframe_api"></script>
-
     <link rel="stylesheet" href="content1.css">
     <title>kontroll</title>
-    
   </head>
   <body>
     <div id="title">
@@ -17,102 +12,86 @@
       <input type="text" id="search-input" placeholder="Buscar...">
       <button id="search-button">Buscar series</button>
 
-      
       <div class="video-menu">
-        <div class="thumbnail" data-video-id="https://www.youtube.com/watch?v=987654321">
+
+        <div class="thumbnail" data-video-url="https://www.youtube.com/watch?v=123456789">
           <img src="images/foto_video.png" alt="Video Thumbnail">
           <div class="overlay">
             <h3>Title Serie1</h3>
             <p>Description Serie1</p>
+            <a href="#" data-video="video1">
+              <img src="https://img.youtube.com/vi/[videoId]/mqdefault.jpg">
+              <h3>Video 1</h3>
+            </a>
           </div>
         </div>
 
-        <div id="reproductor"></div>
-
-        <div class="thumbnail" data-video-url="https://www.youtube.com/watch?v=987654321">
+        <div class="thumbnail" data-video-url="https://www.youtube.com/watch?v=123456789">
           <img src="images/foto_video.png" alt="Video Thumbnail">
           <div class="overlay">
             <h3>Title Serie2</h3>
             <p>Description Serie2</p>
+            <a href="#" data-video="video1">
+              <img src="https://img.youtube.com/vi/[videoId]/mqdefault.jpg">
+              <h3>Video 1</h3>
+            </a>
           </div>
         </div>
-        <div class="thumbnail" data-video-url="https://www.youtube.com/watch?v=987654321">
+
+        <div class="thumbnail" data-video-url="https://www.youtube.com/watch?v=123456789">
           <img src="images/foto_video.png" alt="Video Thumbnail">
           <div class="overlay">
             <h3>Title Serie3</h3>
             <p>Description Serie3</p>
+            <a href="#" data-video="video1">
+              <img src="https://img.youtube.com/vi/[videoId]/mqdefault.jpg">
+              <h3>Video 1</h3>
+            </a>
           </div>
         </div>
 
 
-        <div class="thumbnail" data-video-url="https://www.youtube.com/watch?v=987654321">
+        <div class="thumbnail" data-video-url="https://www.youtube.com/watch?v=123456789">
           <img src="images/foto_video.png" alt="Video Thumbnail">
           <div class="overlay">
             <h3>Title Serie4</h3>
             <p>Description Serie4</p>
+            <a href="#" data-video="video1">
+              <img src="https://img.youtube.com/vi/[videoId]/mqdefault.jpg">
+              <h3>Video 1</h3>
+            </a>
           </div>
         </div>
-        <div class="thumbnail" data-video-url="https://www.youtube.com/watch?v=987654321">
+
+        <div class="thumbnail" data-video-url="https://www.youtube.com/watch?v=123456789">
           <img src="images/foto_video.png" alt="Video Thumbnail">
           <div class="overlay">
             <h3>Title Serie5</h3>
             <p>Description Serie5</p>
+            <a href="#" data-video="video1">
+              <img src="https://img.youtube.com/vi/[videoId]/mqdefault.jpg">
+              <h3>Video 1</h3>
+            </a>
           </div>
         </div>
-        <div class="thumbnail" data-video-url="https://www.youtube.com/watch?v=987654321">
+
+        <div class="thumbnail" data-video-url="https://www.youtube.com/watch?v=123456789">
           <img src="images/foto_video.png" alt="Video Thumbnail">
           <div class="overlay">
             <h3>Title Serie6</h3>
             <p>Description Serie6</p>
+            <a href="#" data-video="video1">
+              <img src="https://img.youtube.com/vi/[videoId]/mqdefault.jpg">
+              <h3>Video 1</h3>
+            </a>
           </div>
         </div>
 
       </div>
 
     </div>
-    <!-- Agrega esta línea antes de la etiqueta </body> -->
     
-
-    <script>
-    // Variables globales
-    var player; // Reproductor de video de YouTube
-    var videoId; // ID del video actualmente en reproducción
-
-    // Controlador de eventos para hacer clic en la miniatura de video
-    $('.thumbnail').on('click', function() {
-      // Obtener el ID del video desde el atributo data-video-id
-      videoId = $(this).data('video-id');
-
-      // Abrir el reproductor de video de YouTube
-      if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
-        // Si el API de YouTube no está cargado, cargarlo primero
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      } else {
-        // Si el API de YouTube está cargado, crear el reproductor de video
-        createPlayer();
-      }
-    });
-
-    // Función para crear el reproductor de video de YouTube
-    function createPlayer() {
-      player = new YT.Player('player', {
-        height: '360',
-        width: '640',
-        videoId: videoId,
-        events: {
-          'onReady': onPlayerReady
-        }
-      });
-    }
-
-    // Función para iniciar la reproducción del video
-    function onPlayerReady(event) {
-      event.target.playVideo();
-    }
-    </script>
-
+    <script src="https://www.youtube.com/iframe_api"></script>
+	  <script src="script_reproductor.js"></script>
   </body>
 </html>
