@@ -39,6 +39,6 @@ socket.on("connect", () => {
 });
 
 
-fucntion subirVolumen() {
+function subirVolumen() {
   const peli = document.getElementById
 }
