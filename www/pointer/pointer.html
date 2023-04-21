@@ -1,8 +1,124 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-    </head>
-    <body>
-        <script type="text/javascript" src="pointer.js"></script>
-    </body>
+  <head>
+    <title>Mando de video</title>
+    <style>
+      /* Estilos del contenedor del teléfono */
+      .phone-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #F0F0F0;
+      }
+
+      /* Estilos de la pantalla del teléfono */
+      .phone-screen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 320px;
+        height: 568px;
+        background-color: #FFF;
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Estilos del controlador */
+      .controller {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        gap: 10px;
+        justify-items: center;
+        align-items: center;
+        width: 250px;
+        height: 350px;
+        border-radius: 30px;
+        background-color: #444;
+      }
+
+      /* Estilos de los botones del controlador */
+      .controller button {
+        display: block;
+        width: 80px;
+        height: 80px;
+        border: none;
+        border-radius: 50%;
+        background-color: #FFF;
+        font-size: 24px;
+        color: #444;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Estilos de los botones de dirección */
+      .controller .up,
+      .controller .down {
+        display: none;
+      }
+
+      /* Estilos de los botones centrales */
+      .controller .center {
+        width: 80px;
+        height: 80px;
+        background-color: #FFF;
+        border-radius: 50%;
+      }
+
+      .controller #stop {
+        grid-row: 2/3;
+        grid-column: 2/3;
+      }
+
+      .controller #rewind {
+        grid-row: 2/3;
+        grid-column: 1/2;
+      }
+
+      .controller #speed {
+        grid-row: 2/3;
+        grid-column: 3/4;
+      }
+
+      .controller #volume-up {
+        grid-row: 3/4;
+        grid-column: 1/2;
+      }
+
+      .controller #volume-down {
+        grid-row: 3/4;
+        grid-column: 3/4;
+      }
+
+      /* Estilos para la rejilla */
+      .controller {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        gap: 10px;
+        justify-items: center;
+        align-items: center;
+      }
+    </style>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    
+  </head>
+  <body>
+    <div class="phone-container">
+      <div class="phone-screen">
+        <div class="controller">
+            <button id="rewind">&#171;</button>
+            <button id="stop">&#9658;</button>
+            <button id="speed">&#187;</button>
+            <button id="volume-up">+</button>
+            <button id="volume-down">-</button>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="pointer.js"></script>
+    <script type="text/javascript" src="movil.js"></script>
+  </body>
 </html>
+  
+  
