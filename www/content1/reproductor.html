@@ -9,60 +9,79 @@
 		<h1 id='titulo'>Nombre del título</h1>
 	</header>
 
-	<div class="video-player">
-		<iframe id="video-player" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
-	</div>
+	<div id="ytplayer"></div>
 
-	<div class="controls">
-		<button onclick="playVideo()">Reproducir</button>
-		<button onclick="pauseVideo()">Pausar</button>
-		<label for="volume">Volumen:</label>
-		<input type="range" id="volume" name="volume" min="0" max="100" value="100" onchange="changeVolume()">
+  	<div>
+		<button onclick="playVideo()">Play</button>
+		<button onclick="pauseVideo()">Pause</button>
+
+		<button onclick="upVolumen()">Up Volumen</button>
+		<button onclick="downVolumen()">Down Volumen</button>
+
+		<button onclick="advance()">Advance</button>
+		<button onclick="rewind()">Rewind</button>
+		
+
 	</div>
 
 	<script src="https://www.youtube.com/iframe_api"></script>
 	<script src="script_reproductor.js"></script>
 	
 	<script>
-		let player;
-		const videoPlayer = document.getElementById('video-player');
+		// Load the IFrame Player API code asynchronously.
+		var tag = document.createElement('script');
+		tag.src = "https://www.youtube.com/player_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-		window.addEventListener('DOMContentLoaded', () => {
-			// Lee el valor de la variable desde la URL
+		// Replace the 'ytplayer' element with an <iframe> and
+		// YouTube player after the API code downloads.
+		var player;
+		function onYouTubePlayerAPIReady() {
 			const urlParams = new URLSearchParams(window.location.search);
 			const videoId = urlParams.get('videoId');
 			console.log(videoId);
-			// Establece la URL del video en el reproductor
-			videoPlayer.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`);
-			player = new YT.Player('video-player', {
-				events: {
-					'onReady': onPlayerReady,
-					}
+			
+			player = new YT.Player('ytplayer', {
+				height: '360',
+				width: '640',
+				videoId: videoId
 			});
 
 			const video = getVideoId(videoId);
 			var element=document.getElementById('titulo').innerHTML = video;
-			console.log(element);
-			console.log(video);
-
-			initPlayer();
-		});
-
+		}
 
 		function playVideo() {
-			// Reproduce el video
 			player.playVideo();
 		}
 
 		function pauseVideo() {
-			// Pausa el video
 			player.pauseVideo();
 		}
 
-		function changeVolume() {
-			const volume = document.getElementById('volume').value;
-			player.setVolume(volume);
+		function upVolumen() {
+			var volumen = player.getVolume();
+			player.setVolume(volumen+5);
+			console.log(volumen);
 		}
+
+		function downVolumen() {
+			var volumen = player.getVolume();
+			player.setVolume(volumen-5);
+			console.log(volumen);
+		}
+
+		function advance() {
+			var currentTime = player.getCurrentTime();
+			player.seekTo(currentTime + 10, true);
+		}
+
+		function rewind() {
+			var currentTime = player.getCurrentTime();
+			player.seekTo(currentTime - 10, true);
+		}
+		
 
 		function getVideoId(videoId) {
 		// Aquí se puede modificar la forma en que se obtiene la ID del video de YouTube

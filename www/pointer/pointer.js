@@ -33,16 +33,10 @@ if ('AbsoluteOrientationSensor' in window) {
 }
 
 function toEulerYawPitch(q) {
-
   const pitch = Math.atan2(2 * q[0] * q[3] + 2 * q[1] * q[2], 1 - 2 * q[0] * q[0] - 2 * q[2] * q[2]) * 180 / Math.PI;
+  const roll = Math.atan2(2 * q[1] * q[3] + 2 * q[0] * q[2], 1 - 2 * [1] * q[1] - 2 * q[2] * q[2]) * 180 / Math.PI;
 
-  console.log(pitch);
-
-  const siny_cosp = 2 * (q[3] * q[2] + q[0] * q[1]);
-  const cosy_cosp = 1 - 2 * (q[1] * q[1] + q[2] * q[2]);
-  const yaw = Math.atan2(siny_cosp, cosy_cosp);
-
-  return [yaw, pitch];
+  return [roll, pitch];
 }
 
 function calcDist(angle, initAngle) {
@@ -54,3 +48,4 @@ function calcDist(angle, initAngle) {
   const dist = Math.round(-1000 * Math.tan(angle * (Math.PI / 180)));
   return dist;
 }
+

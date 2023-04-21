@@ -68,18 +68,14 @@ body {
 }
 
 /* Estilo del iframe */
-#video-player {
+#ytplayer {
   border: none; /* Elimina el borde del iframe */
   border-radius: 20px; /* Agrega esquinas redondeadas al iframe */
   box-shadow: 0 5px 10px rgba(0,0,0,0.2); /* Agrega una sombra al iframe */
-}
-
-/* Estilo de la clase video-player */
-.video-player {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 header {
@@ -99,4 +95,28 @@ h1 {
   width: 200px;
   height: 200px;
   border: 2px solid red;
+}
+
+button {
+  background-color: #4CAF50; /* Color de fondo */
+  border: none; /* Sin borde */
+  color: white; /* Color del texto */
+  padding: 12px 24px; /* Espacio interno */
+  text-align: center; /* Centrado del texto */
+  text-decoration: none; /* Sin subrayado */
+  display: inline-block; /* Mostrar como bloque */
+  font-size: 16px; /* Tamaño de letra */
+  margin: 4px 2px; /* Espacio entre botones */
+  cursor: pointer; /* Cambiar el cursor al pasar el ratón */
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+button:hover {
+  background-color: #3e8e41; /* Cambiar el color de fondo al pasar el ratón */
+}
+
+button:active {
+  background-color: #3e8e41; /* Cambiar el color de fondo al hacer clic */
+  box-shadow: 0 5px #666; /* Agregar una sombra al hacer clic */
+  transform: translateY(4px); /* Mover el botón hacia abajo al hacer clic */
 }
