@@ -29,6 +29,7 @@ body {
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  background: black;
 }
 
 .thumbnail img {
@@ -64,4 +65,38 @@ body {
 
 .overlay p {
   font-size: 0.8rem;
+}
+
+/* Estilo del iframe */
+#video-player {
+  border: none; /* Elimina el borde del iframe */
+  border-radius: 20px; /* Agrega esquinas redondeadas al iframe */
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2); /* Agrega una sombra al iframe */
+}
+
+/* Estilo de la clase video-player */
+.video-player {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+.imagen_blanco_bueno {
+  /* Agrega tus estilos personalizados aquí */
+  width: 200px;
+  height: 200px;
+  border: 2px solid red;
 }
