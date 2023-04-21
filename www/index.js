@@ -38,3 +38,20 @@ socket.on("connect", () => {
 
 });
 
+document.getElementById("menu-inicial").onclick = function () {
+  location.href = "./inicio.html";
+};
+
+
+function subirVolumen() {
+  const peli = document.getElementById('video-player')
+  if (peli.volume == 1 || peli.volume > 0.9) {
+    peli.volume = 1;
+  } else {
+    peli.volume += 1;
+  }
+}
+
+socket.on('subevolumen', () => {
+  subirVolumen();
+})
