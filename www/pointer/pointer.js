@@ -33,10 +33,10 @@ if ('AbsoluteOrientationSensor' in window) {
 }
 
 function toEulerYawPitch(q) {
-  const sinp = Math.sqrt(1 + 2 * (q[3] * q[1] - q[0] * q[2]));
-  const cosp = Math.sqrt(1 - 2 * (q[3] * q[1] + q[0] * q[2]));
-  const pitch = 2 * Math.atan2(sinp, cosp) - Math.PI / 2;
 
+  const pitch = Math.atan2(2 * q[0] * q[3] + 2 * q[1] * q[2], 1 - 2 * q[0] * q[0] - 2 * q[2] * q[2]) * 180 / Math.PI;
+
+  console.log(pitch);
 
   const siny_cosp = 2 * (q[3] * q[2] + q[0] * q[1]);
   const cosy_cosp = 1 - 2 * (q[1] * q[1] + q[2] * q[2]);
