@@ -3,7 +3,7 @@ window.onload = function() {
 const socket = io();
 
 const qrcode = new QRCode("qrcode", {
-  text: "http://localhost:8080/pointer/pointer.html",
+  text: "http://localhost:8080/pointer/movil.html",
   width: 512,
   height: 512,
   colorDark: "#000000",
