@@ -33,3 +33,7 @@ io.on('connection', (socket) => {
 server.listen(9000, () => {
   console.log("Server listening...");
 });
+
+socket.on('subirVolumen', () => {
+  io.emit('subevolumen');
+})
