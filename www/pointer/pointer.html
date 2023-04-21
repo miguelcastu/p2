@@ -91,6 +91,11 @@
         grid-column: 3/4;
       }
 
+      .controller #select {
+        grid-row: 3/4;
+        grid-column: 2/3;
+      }
+
       /* Estilos para la rejilla */
       .controller {
         display: grid;
@@ -102,6 +107,7 @@
       }
     </style>
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
     
   </head>
   <body>
@@ -113,11 +119,22 @@
             <button id="speed">&#187;</button>
             <button id="volume-up">+</button>
             <button id="volume-down">-</button>
+            <button id="select">OK</button>
         </div>
       </div>
     </div>
     <script type="text/javascript" src="pointer.js"></script>
     <script type="text/javascript" src="movil.js"></script>
+    <script>
+      var buttons = document.querySelectorAll(".controller button");
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", function() {
+          if (navigator.vibrate) {
+            navigator.vibrate(100); // tiempo de vibración en milisegundos
+          }
+        });
+      }
+    </script>
   </body>
 </html>
   

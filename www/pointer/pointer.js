@@ -55,3 +55,8 @@ function calcDist(angle, initAngle) {
   return dist;
 }
 
+// Funcion subir volumen
+const mas_vol = document.getElementById('volume-up');
+mas_vol.addEventListener('click', () => {
+  socket.emit('subirVolumen');
+});
