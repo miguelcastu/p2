@@ -54,3 +54,4 @@ function calcDist(angle, initAngle) {
   const dist = Math.round(-1000 * Math.tan(angle * (Math.PI / 180)));
   return dist;
 }
+
