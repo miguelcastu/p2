@@ -38,3 +38,7 @@ socket.on("connect", () => {
 
 });
 
+
+fucntion subirVolumen() {
+  const peli = document.getElementById
+}
