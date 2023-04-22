@@ -16,6 +16,17 @@ body {
   font-size: 60px;
   color: white;
 }
+.pointer{
+  margin: auto;
+  width: 32px;
+  height: 32px;
+  min-height: 32px;
+  background-color: red;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 9999;
+}
 
 .video-menu {
   margin: 24px;

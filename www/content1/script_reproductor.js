@@ -1,3 +1,35 @@
+ const socket = io();
+  
+
+socket.on("connect", () => {
+  socket.emit("CLIENT_CONNECTED", { id: 1 });
+
+  socket.on("ACK_CONNECTION", () => {
+    console.log("ACK");
+  });
+
+  socket.on("NEW_POINTER", (data) => {
+    const pointerEl = document.createElement("div");
+    pointerEl.id = data.pointerId;
+    pointerEl.classList.add("pointer");
+    pointerEl.style.backgroundColor = Math.floor(Math.random() * 16777215).toString(16);
+    document.body.appendChild(pointerEl);
+
+  })
+
+  socket.on("SENSOR_READING", (data) => {
+    console.log(data);
+    const cursor = document.querySelector(`#${data.pointerId}`);
+    console.log(`#${data.pointerId}`)
+    if (cursor) {
+      cursor.style.left = data.coords[0] + window.innerWidth / 2;
+      cursor.style.top = data.coords[1] + window.innerHeight / 2;
+    }
+
+  });
+
+});
+
 const videoThumbnails = document.querySelectorAll('.thumbnail img');
 //const videoPlayer = document.getElementById('video-player');
 
@@ -98,3 +130,4 @@ function getVideoId(video) {
 	 }
    }
  });
+
