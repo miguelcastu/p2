@@ -27,7 +27,7 @@ socket.on("connect", () => {
   })
 
   socket.on("SENSOR_READING", (data) => {
-    //console.log(data);
+    console.log(data);
     const cursor = document.querySelector(`#${data.pointerId}`);
     if (cursor) {
       cursor.style.left = data.coords[0] + window.innerWidth / 2;
