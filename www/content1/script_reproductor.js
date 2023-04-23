@@ -1,5 +1,4 @@
- const socket = io();
-  
+const socket = io();
 
 socket.on("connect", () => {
   socket.emit("CLIENT_CONNECTED", { id: 1 });
@@ -24,12 +23,124 @@ socket.on("connect", () => {
       cursor.style.left = data.coords[0] + window.innerWidth / 2;
       cursor.style.top = data.coords[1] + window.innerHeight / 2;
     }
-
+  });
+  console.log("h")
+  socket.on("volume-up", () => {
+	console.log("hjkhjk");
+	upVolumen();
   });
 
 });
 
+// Load the IFrame Player API code asynchronously.
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/player_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+// Replace the 'ytplayer' element with an <iframe> and
+// YouTube player after the API code downloads.
+var player;
+
+function onYouTubePlayerAPIReady() {
+	const urlParams = new URLSearchParams(window.location.search);
+	const videoId = urlParams.get('videoId');
+	console.log(videoId);
+	
+	player = new YT.Player('ytplayer', {
+		height: '360',
+		width: '640',
+		videoId: videoId
+	});
+
+	const video = getVideo(videoId);
+	var element=document.getElementById('titulo').innerHTML = video;
+}
+
+function playVideo() {
+	player.playVideo();
+}
+
+function pauseVideo() {
+	player.pauseVideo();
+}
+
+function upVolumen() {
+	var volumen = player.getVolume();
+	player.setVolume(volumen+5);
+	console.log(volumen);
+}
+
+function downVolumen() {
+	var volumen = player.getVolume();
+	player.setVolume(volumen-5);
+	console.log(volumen);
+}
+
+function advance() {
+	var currentTime = player.getCurrentTime();
+	player.seekTo(currentTime + 10, true);
+}
+
+function rewind() {
+	var currentTime = player.getCurrentTime();
+	player.seekTo(currentTime - 10, true);
+}
+
+
+function getVideo(videoId) {
+// Aquí se puede modificar la forma en que se obtiene la ID del video de YouTube
+switch (videoId) {
+	//Videos
+	case 'BbZi8xGMyuM':
+		return 'Saiko-Supernova';
+	case '1hd9E9DYC7U':
+		return 'EL NUEVO EA SPORTS FC 24 !!! ADIOS FIFA ... DjMaRiiO';
+	case '8Q10pNThpF4':
+		return 'EPISODIO 53 EL XOKAS';
+
+	case 'MxCYv_m3UFk':
+		return 'Hola YouTube';
+	case 'BW5Iq814xlE':
+		return 'NATOS | SELECTA Motorseries #01';
+	case 'gE0CGqtySUE':
+		return 'Así es la Dura Vida en Alaska';
+
+	//Series
+	case 'nEPCaaMLd9Q':
+		return 'Aquí no hay quien viva (T1-C1)';
+	case 'cRVRbUAvkRw':
+		return 'Prendí la calle desde la prisión';
+	case 'IV9gx6LV57Y':
+		return 'DISASTER CHEFS 2 #1';
+
+	case 'oMMa42e_b34':
+		return 'EPISODIO 5 HACKERS';
+	case '7Ql5wGkrpWA':
+		return 'SOLO en los PEORES BARRIOS de PALMA';
+	case 'jsnspXF8qxs':
+		return '24 horas con Myke Towers';
+	
+	//Peliculas
+	case 'LB9nQCi_zEg':
+		return 'Todo a la vez en todas partes';
+	case 'v55PruG5k2w':
+		return 'Coraline y la puerta secreta';
+	case 'HS0XQqI-eyo':
+		return 'Top Gun: Maverick';
+
+	case '4tDAcZifw5I':
+		return 'Orgullo y prejuicio';
+	case 'kxtBO5gwKmM':
+		return 'Titanic';
+	case '6Uk0DKnJ_AU':
+		return 'Ben Hur';
+
+	default:
+		return '';
+
+	}
+}
 const videoThumbnails = document.querySelectorAll('.thumbnail img');
 //const videoPlayer = document.getElementById('video-player');
 

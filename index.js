@@ -15,10 +15,12 @@ io.on('connection', (socket) => {
     socket.emit("ACK_CONNECTION");
     if (clientSocket) clientSocket.emit("NEW_POINTER", { pointerId: socket.id });
   });
-  
-  socket.on('volume-up', () => {
-    io.emit('volume-up');
-  })
+
+  socket.on("volume-up", () => {
+    if (clientSocket) clientSocket.emit("volume-up",clientSocket.emit("volume-up"));
+    
+  });
+
   socket.on("SENSOR_READING", (data) => {
     //console.log(data);
     if (clientSocket) clientSocket.emit("SENSOR_READING", {

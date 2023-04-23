@@ -9,26 +9,19 @@ var volumeDownButton = document.getElementById('volume-down');
 const player = document.getElementById("video-player");
 
 // Configuramos los eventos click para los botones del controlador
-volumeUpButton.addEventListener("click", () => {
-    socket.emit("rewind");
-});
 
-volumeUpButton.addEventListener("click", () => {
-    socket.emit("stop");
-});
+const socket = io();
+  
 
-volumeUpButton.addEventListener("click", () => {
-    socket.emit("speed");
-});
+socket.on("connect", () => {
+    console.log("Conexión establecida con el servidor");
+    socket.emit("CLIENT_CONNECTED", { id: 1 });
 
-volumeUpButton.addEventListener("click", () => {
-    socket.emit("volume-up");
-});
-
-volumeUpButton.addEventListener("click", () => {
-    socket.emit("OK");
-});
-
-volumeUpButton.addEventListener("click", () => {
-  socket.emit("volume-down");
+    socket.on("ACK_CONNECTION", () => {
+        console.log("ACK");
+    });
+    volumeUpButton.addEventListener("click", function() {
+        socket.emit("volume-up");
+        
+    });
 });
