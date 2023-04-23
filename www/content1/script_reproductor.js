@@ -8,6 +8,7 @@ socket.on("connect", () => {
   });
 
   socket.on("NEW_POINTER", (data) => {
+	//console.log(data);
     const pointerEl = document.createElement("div");
     pointerEl.id = data.pointerId;
     pointerEl.classList.add("pointer");
@@ -24,12 +25,30 @@ socket.on("connect", () => {
       cursor.style.top = data.coords[1] + window.innerHeight / 2;
     }
   });
-  console.log("h")
   socket.on("volume-up", () => {
-	console.log("hjkhjk");
 	upVolumen();
   });
-
+  socket.on("volume-down", () => {
+	downVolumen();
+  });
+  socket.on("speed", () => {
+	advance();
+  });
+  socket.on("stop", () => {
+	pauseVideo();
+  });
+  socket.on("rewind", () => {
+	rewind();
+  });
+  socket.on("play", () => {
+	playVideo();
+  });
+  socket.on("return", () => {
+	return_inicio();
+  });
+  socket.on("OK", (data) => {
+	click_pointer(data);
+  });
 });
 
 // Load the IFrame Player API code asynchronously.
@@ -67,13 +86,13 @@ function pauseVideo() {
 
 function upVolumen() {
 	var volumen = player.getVolume();
-	player.setVolume(volumen+5);
+	player.setVolume(volumen+20);
 	console.log(volumen);
 }
 
 function downVolumen() {
 	var volumen = player.getVolume();
-	player.setVolume(volumen-5);
+	player.setVolume(volumen-20);
 	console.log(volumen);
 }
 
@@ -85,6 +104,28 @@ function advance() {
 function rewind() {
 	var currentTime = player.getCurrentTime();
 	player.seekTo(currentTime - 10, true);
+}
+
+function click_pointer(data){
+	console.log("click");
+	let x= data.coords[0] + window.innerWidth / 2;
+    let y=data.coords[1] + window.innerHeight / 2;
+	var elemento = document.elementFromPoint(x, y).click();
+	console.log(elemento)
+
+	
+	/*
+	var evento = new MouseEvent("click", { 
+		'view':window,
+		'bubbles':true,
+		'cancelable': true
+	})
+	elemento.dispatchEvent(evento)*/
+	
+}
+
+function return_inicio() {
+	location.href = '../inicio.html';
 }
 
 

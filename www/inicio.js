@@ -26,6 +26,9 @@ socket.on("connect", () => {
     }
 
   });
+  socket.on("OK", (data) => {
+    click_pointer(data);
+    });
 
 });
 
@@ -40,4 +43,19 @@ document.getElementById("videos-button").onclick = function () {
   document.getElementById("peliculas-button").onclick = function () {
     location.href = "content1/peliculas.html";
   };
+  function click_pointer(data){
+    console.log("click");
+    let x= data.coords[0] + window.innerWidth / 2;
+      let y=data.coords[1] + window.innerHeight / 2;
+    var elemento = document.elementFromPoint(x, y).click();
+    console.log(elemento)
+    /*
+    var evento = new MouseEvent("click", { 
+      'view':window,
+      'bubbles':true,
+      'cancelable': true
+    })
+    elemento.dispatchEvent(evento)*/
+    
+  }
   

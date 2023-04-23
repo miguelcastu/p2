@@ -43,6 +43,7 @@ body {
     top: 0px;
     left: 0px;
     z-index: 9999;
+    pointer-events:None;
   }
 
   #qrcode {

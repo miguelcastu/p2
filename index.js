@@ -21,8 +21,46 @@ io.on('connection', (socket) => {
     
   });
 
+  socket.on("volume-down", () => {
+    if (clientSocket) clientSocket.emit("volume-down",clientSocket.emit("volume-down"));
+    
+  });
+
+  socket.on("speed", () => {
+    if (clientSocket) clientSocket.emit("speed",clientSocket.emit("speed"));
+    
+  });
+
+  socket.on("stop", () => {
+    if (clientSocket) clientSocket.emit("stop",clientSocket.emit("stop"));
+    
+  });
+
+  socket.on("rewind", () => {
+    if (clientSocket) clientSocket.emit("rewind",clientSocket.emit("rewind"));
+    
+  });
+
+  socket.on("play", () => {
+    if (clientSocket) clientSocket.emit("play",clientSocket.emit("play"));
+    
+  });
+
+  socket.on("OK", (data) => {
+    console.log(data);
+    if (clientSocket) clientSocket.emit("OK", {
+      pointerId: socket.id,
+      coords: data
+    });
+  });
+
+  socket.on("return", () => {
+    if (clientSocket) clientSocket.emit("return",clientSocket.emit("return"));
+    
+  });
+    
   socket.on("SENSOR_READING", (data) => {
-    //console.log(data);
+
     if (clientSocket) clientSocket.emit("SENSOR_READING", {
       pointerId: socket.id,
       coords: data
@@ -38,5 +76,3 @@ io.on('connection', (socket) => {
 server.listen(9000, () => {
   console.log("Server listening...");
 });
-
-

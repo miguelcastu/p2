@@ -26,7 +26,6 @@ socket.on("connect", () => {
   })
 
   socket.on("SENSOR_READING", (data) => {
-    //console.log(data);
     const cursor = document.querySelector(`#${data.pointerId}`);
     if (cursor) {
       cursor.style.left = data.coords[0] + window.innerWidth / 2;
@@ -34,6 +33,9 @@ socket.on("connect", () => {
     }
 
   });
+  socket.on("OK", (data) => {
+    click_pointer(data);
+    });
 
 });
 
@@ -41,16 +43,12 @@ document.getElementById("menu-inicial").onclick = function () {
   location.href = "./inicio.html";
 };
 
-
-function subirVolumen() {
-  const peli = document.getElementById('video-player')
-  if (peli.volume == 1 || peli.volume > 0.9) {
-    peli.volume = 1;
-  } else {
-    peli.volume += 1;
+  function click_pointer(data){
+    console.log("click");
+    let x= data.coords[0] + window.innerWidth / 2;
+    let y=data.coords[1] + window.innerHeight / 2;
+    console.log(x);
+    console.log(y);
+    document.elementFromPoint(x, y).click();
   }
-}
 
-socket.on('subevolumen', () => {
-  subirVolumen();
-})

@@ -4,15 +4,39 @@ var stopButton = document.getElementById('stop');
 var speedButton = document.getElementById('speed');
 var volumeUpButton = document.getElementById('volume-up');
 var volumeDownButton = document.getElementById('volume-down');
-
+var playButton = document.getElementById('play');
+var okButton = document.getElementById('OK');
+let click=false;
 const socket = io();
 
 volumeUpButton.addEventListener("click", function() {
-  console.log("pooooooooooooooo");
   socket.emit("volume-up")
 ;})
 
+volumeDownButton.addEventListener("click", function() {
+  socket.emit("volume-down")
+;})
 
+speedButton.addEventListener("click", function() {
+  socket.emit("speed")
+;})
+
+stopButton.addEventListener("click", function() {
+  socket.emit("stop")
+;})
+
+rewindButton.addEventListener("click", function() {
+  socket.emit("rewind")
+;})
+
+playButton.addEventListener("click", function() {
+  socket.emit("play")
+;})
+
+
+okButton.addEventListener("click", function() {
+  click=true;
+})
 
 
 if ('AbsoluteOrientationSensor' in window) {
@@ -36,10 +60,18 @@ if ('AbsoluteOrientationSensor' in window) {
         if (calibrate) {
           initPos = angles;
           calibrate = false;
-        }
+        };
 
-        socket.emit("SENSOR_READING", angles.map((angle, i) => calcDist(angle, initPos[i])));
-      };
+        let almacenar=angles.map((angle, i) => calcDist(angle, initPos[i]));
+        console.log(almacenar);
+        socket.emit("SENSOR_READING", almacenar);
+        if (click) {
+          navigator.vibrate(10);
+          click=false;
+          socket.emit("OK", almacenar);      
+        };
+ 
+        };
       sensor.start();
     });
   } catch (err) {

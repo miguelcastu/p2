@@ -66,6 +66,11 @@
         border-radius: 50%;
       }
 
+      .controller #play {
+        grid-row: 3/4;
+        grid-column: 2/3;
+      }
+
       .controller #stop {
         grid-row: 2/3;
         grid-column: 2/3;
@@ -88,13 +93,9 @@
 
       .controller #volume-down {
         grid-row: 3/4;
-        grid-column: 2/3;
-      }
-
-      .controller #volume-down {
-        grid-row: 3/4;
         grid-column: 3/4;
       }
+
 
       /* Estilos para la rejilla */
       .controller {
@@ -114,11 +115,13 @@
       <div class="phone-screen">
         <div class="controller">
             <button id="rewind">&#171;</button>
-            <button id="stop">&#9658;</button>
+            <button id="stop">&#9632;</button>
             <button id="speed">&#187;</button>
             <button id="OK">OK</button>
             <button id="volume-up">+</button>
+            <button id="play">&#9658;</button>
             <button id="volume-down">-</button>
+            <button id="return">&#8634;</button>
         </div>
       </div>
     </div>
