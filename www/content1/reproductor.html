@@ -1,6 +1,6 @@
 <html>
   <head>
-    <script type="text/javascript" src="/socket.io/socket.io.js"></script>  
+    <script type="text/javascript" src="/.io/.io.js"></script>  
     <link rel="stylesheet" href="content1.css">
     <title>Reproductor de video</title>
 </head>
@@ -28,6 +28,7 @@
 	<script src="script_reproductor.js"></script>
 	
 	<script>
+		const socket2=io()
 		// Load the IFrame Player API code asynchronously.
 		var tag = document.createElement('script');
 		tag.src = "https://www.youtube.com/player_api";
@@ -37,6 +38,7 @@
 		// Replace the 'ytplayer' element with an <iframe> and
 		// YouTube player after the API code downloads.
 		var player;
+
 		function onYouTubePlayerAPIReady() {
 			const urlParams = new URLSearchParams(window.location.search);
 			const videoId = urlParams.get('videoId');
@@ -136,6 +138,9 @@
 
 			}
 		}
+		socket2.on('volume-up', () => {
+			upVolumen();
+		})
 	</script>
 </body>
 </html>

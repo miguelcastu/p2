@@ -15,7 +15,10 @@ io.on('connection', (socket) => {
     socket.emit("ACK_CONNECTION");
     if (clientSocket) clientSocket.emit("NEW_POINTER", { pointerId: socket.id });
   });
-
+  
+  socket.on('volume-up', () => {
+    io.emit('volume-up');
+  })
   socket.on("SENSOR_READING", (data) => {
     //console.log(data);
     if (clientSocket) clientSocket.emit("SENSOR_READING", {
@@ -33,8 +36,5 @@ io.on('connection', (socket) => {
 server.listen(9000, () => {
   console.log("Server listening...");
 });
-/*
-socket.on('subirVolumen', () => {
-  io.emit('subevolumen');
-})
-*/
+
+

@@ -29,6 +29,7 @@ socket.on("connect", () => {
 
 });
 
+
 const videoThumbnails = document.querySelectorAll('.thumbnail img');
 //const videoPlayer = document.getElementById('video-player');
 
@@ -105,28 +106,47 @@ function getVideoId(video) {
 	}
 }
 
- // Obtiene los elementos HTML que vamos a necesitar
- const searchInput = document.getElementById('search-input');
- const searchButton = document.getElementById('search-button');
- const thumbnails = document.getElementsByClassName('thumbnail');
+// Obtiene los elementos HTML que vamos a necesitar
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
+const thumbnails = document.getElementsByClassName('thumbnail');
  
- // Agrega un evento click al botón de búsqueda
- searchButton.addEventListener('click', () => {
-   // Obtiene el término de búsqueda
-   const searchTerm = searchInput.value.toLowerCase();
- 
-   // Recorre cada thumbnail y verifica si contiene el término de búsqueda
-   for (let i = 0; i < thumbnails.length; i++) {
-	 const thumbnail = thumbnails[i];
-	 const title = thumbnail.querySelector('h3').textContent.toLowerCase();
-	 const description = thumbnail.querySelector('p').textContent.toLowerCase();
-	 const url = thumbnail.getAttribute('data-video-url');
- 
-	 if (title.includes(searchTerm) || description.includes(searchTerm)) {
-	   thumbnail.style.display = 'block';
-	 } else {
-	   thumbnail.style.display = 'none';
-	 }
-   }
- });
+// Agrega un evento click al botón de búsqueda
+searchButton.addEventListener('click', () => {
+// Obtiene el término de búsqueda
+const searchTerm = searchInput.value.toLowerCase();
 
+// Recorre cada thumbnail y verifica si contiene el término de búsqueda
+for (let i = 0; i < thumbnails.length; i++) {
+	const thumbnail = thumbnails[i];
+	const title = thumbnail.querySelector('h3').textContent.toLowerCase();
+	const description = thumbnail.querySelector('p').textContent.toLowerCase();
+	const url = thumbnail.getAttribute('data-video-url');
+
+	if (title.includes(searchTerm) || description.includes(searchTerm)) {
+	thumbnail.style.display = 'block';
+	} else {
+	thumbnail.style.display = 'none';
+	}
+}
+});
+
+ const microphone = document.getElementById('start-button');
+ // Habilitar la API Speech
+ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+ const recognition = new SpeechRecognition();
+ 
+ // Configurar la API Speech
+ recognition.lang = 'es-ES'; // Configura el lenguaje a español
+ recognition.continuous = false; // Para detener la grabación después de que se haya detectado un resultado
+ 
+ // Agregar un evento click al botón de búsqueda
+ microphone.addEventListener('click', () => {
+	 recognition.start(); // Comenzar a grabar
+ });
+ 
+ // Escuchar los resultados de la grabación
+ recognition.onresult = (event) => {
+	 const result = event.results[0][0].transcript; // Obtener el texto de la grabación
+	 searchInput.value = result; // Asignar el texto al campo de búsqueda
+ };
