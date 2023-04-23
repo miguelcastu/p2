@@ -1,4 +1,19 @@
+// Obtener los botones del controlador
+var rewindButton = document.getElementById('rewind');
+var stopButton = document.getElementById('stop');
+var speedButton = document.getElementById('speed');
+var volumeUpButton = document.getElementById('volume-up');
+var volumeDownButton = document.getElementById('volume-down');
+
 const socket = io();
+
+volumeUpButton.addEventListener("click", function() {
+  console.log("pooooooooooooooo");
+  socket.emit("volume-up")
+;})
+
+
+
 
 if ('AbsoluteOrientationSensor' in window) {
   try {
