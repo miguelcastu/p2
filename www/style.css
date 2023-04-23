@@ -13,17 +13,17 @@ body {
   }
   
   .menu {
-    margin-top: 15%;
+    margin-top: 5%;
     display: flex;
     justify-content: center;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
     font-size: 20px;
   }
   
   .menu button {
     display: block;
     width: 1000px;
-    padding: 100px;
+    padding: 50px;
     font-size: 45px;
     transition: all 0.3s ease-in-out;
   }
@@ -47,4 +47,5 @@ body {
 
   #qrcode {
     margin-left: 33%;
+    height: 60%;
   }
