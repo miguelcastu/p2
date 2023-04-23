@@ -1,7 +1,7 @@
 const socket = io();
 
 const qrcode = new QRCode("qrcode", {
-  text: "https://socket-io-pointer.andreabellucci1.repl.co/pointer/pointer.html",
+  text: "http://localhost:9000/pointer/pointer.html",
   width: 512,
   height: 512,
   colorDark: "#000000",

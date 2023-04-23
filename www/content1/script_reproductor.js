@@ -51,14 +51,12 @@ socket.on("connect", () => {
   });
 });
 
-// Load the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/player_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// Replace the 'ytplayer' element with an <iframe> and
-// YouTube player after the API code downloads.
+
 var player;
 
 function onYouTubePlayerAPIReady() {
@@ -113,14 +111,6 @@ function click_pointer(data){
 	var elemento = document.elementFromPoint(x, y).click();
 	console.log(elemento)
 
-	
-	/*
-	var evento = new MouseEvent("click", { 
-		'view':window,
-		'bubbles':true,
-		'cancelable': true
-	})
-	elemento.dispatchEvent(evento)*/
 	
 }
 
@@ -183,7 +173,6 @@ switch (videoId) {
 	}
 }
 const videoThumbnails = document.querySelectorAll('.thumbnail img');
-//const videoPlayer = document.getElementById('video-player');
 
 function onYouTubeIframeAPIReady() {
 	videoThumbnails.forEach(thumbnail => {

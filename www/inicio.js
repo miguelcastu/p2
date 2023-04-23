@@ -18,7 +18,6 @@ socket.on("connect", () => {
   })
 
   socket.on("SENSOR_READING", (data) => {
-    //console.log(data);
     const cursor = document.querySelector(`#${data.pointerId}`);
     if (cursor) {
       cursor.style.left = data.coords[0] + window.innerWidth / 2;
@@ -49,13 +48,6 @@ document.getElementById("videos-button").onclick = function () {
       let y=data.coords[1] + window.innerHeight / 2;
     var elemento = document.elementFromPoint(x, y).click();
     console.log(elemento)
-    /*
-    var evento = new MouseEvent("click", { 
-      'view':window,
-      'bubbles':true,
-      'cancelable': true
-    })
-    elemento.dispatchEvent(evento)*/
     
   }
   
